@@ -36,3 +36,89 @@
     transform: rotate(360deg);
   }
 }
+body{
+  position: relative;
+}
+
+.nav-bar{
+  width: 100%;
+  margin: 0 auto;
+  background-color:  var(--primary-color);
+}
+.content{
+  display: flex;
+  margin:  0 auto;
+  width:  80%;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.menu-left-level-1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu > a , .menu{
+  color: #ffffff;
+  padding:5px 10px;
+}
+.menu-left-level-2{
+  display: none;
+  position:  absolute;
+  align-items: center;
+  justify-content: center;
+
+}
+.menu-right-level-1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu{
+  display: flex;
+  align-items: center;
+}
+#slider-for-home{
+  max-width: 1090px;
+  min-width: 1090px;
+  max-height: 327px;
+  min-height: 327px;
+  background-image: url('https://cf.shopee.vn/file/7c77a744cd30a500488c2024b6c15dd8');
+  margin: 2% auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+footer{
+  bottom: 0px;
+  /* transform: translate(0% , 1800%); */
+  position: relative;
+  background-color: black;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  margin: 2% auto ;
+}
+.products {
+  width: 1400px;
+  display: grid;
+  grid-template-columns: 24.3% 24.3% 24.3% 24.3%;
+  grid-gap: 1%;
+  margin: 0 auto;
+
+}
+.productCard{
+  flex-basis: calc(25% - 40px);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px #ddd;
+  background-color: white;
+}
+.price{
+  display: flex;
+  justify-content: space-between;
+}
+.button{
+  margin: 4% 0 0 0 ;
+  border-radius: 2%;
+}
