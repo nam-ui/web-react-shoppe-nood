@@ -6,4 +6,5 @@ export type Product ={
     imgProduct ?: string ,
     beforSale ?: number ,
     afterSale ?: number ,
+    percentageDiscount  ?: number
 }
