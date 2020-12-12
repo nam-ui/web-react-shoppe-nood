@@ -7,7 +7,6 @@ import Item from "../home/ProductItem";
 class WareHouseProduct extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
     this.state = {
       products: this.props.products,
       propsShowDiaLogUpdate: false,

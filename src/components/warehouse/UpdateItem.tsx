@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Product } from "../../model/Product";
-
+import { productService } from "../../service/ProductService";
 class UpdateItem extends Component<Props, State> {
   constructor(props: any) {
     super(props);
@@ -12,7 +12,7 @@ class UpdateItem extends Component<Props, State> {
       nameProduct: "",
       percentageDiscount: 0,
     };
-    let LocalPhone = localStorage.getItem("Shopee");
+    let LocalPhone = localStorage.getItem("products");
     let LocalShooppe = JSON.parse(LocalPhone || "[]");
     LocalShooppe.map((item: any) => {
       console.log(item);
@@ -79,15 +79,7 @@ class UpdateItem extends Component<Props, State> {
             <button
               className='btn btn-primary'
               onClick={() => {
-                let newArray = new Array();
-                let LocalPhone = localStorage.getItem("Shopee");
-                let LocalShooppe = JSON.parse(LocalPhone || "[]");
-                LocalShooppe.map((item: any) => {
-                  item.idProduct == this.state.idProduct
-                    ? newArray.push(this.state)
-                    : newArray.push(item);
-                });
-                localStorage.setItem("Shopee", JSON.stringify(newArray));
+                productService.update(this.props.propsProductID, this.state);
                 alert("Chúc mừng mày đả sửa thành công");
                 window.location.href = "/ware-house";
               }}

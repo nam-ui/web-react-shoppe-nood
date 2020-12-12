@@ -6,21 +6,19 @@ import ProductItem from "../components/home/ProductItems";
 import { type } from "os";
 import { Product } from "../model/Product";
 import { Cart } from "../model/Cart";
-
+import { productService } from "../service/ProductService";
 class home extends Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
       products: [],
     };
-    let LocalPhone = localStorage.getItem("Shopee");
-    let LocalShooppe = JSON.parse(LocalPhone || "[]");
+    let localShooppe = productService.list();
     this.state = {
-      products: LocalShooppe,
+      products: localShooppe,
     };
     console.log(this.state.products);
   }
-
   render() {
     return (
       <div id='home-pages'>

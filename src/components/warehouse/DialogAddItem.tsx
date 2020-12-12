@@ -1,7 +1,7 @@
 import { type } from "os";
 import React, { Component } from "react";
 import { Product } from "../../model/Product";
-
+import { productService } from "../../service/ProductService";
 class DialogAddItem extends Component<Props, State> {
   constructor(props: any) {
     super(props);
@@ -87,21 +87,7 @@ class DialogAddItem extends Component<Props, State> {
               <button
                 className='btn btn-primary'
                 onClick={(event) => {
-                  let giaTruoc = this.state.beforSale || 1;
-                  let giaSau = this.state.afterSale || 1;
-                  let gia = (giaTruoc / giaSau) * 100;
-                  let objShopee = {
-                    idProduct: new Date().getTime(),
-                    afterSale: this.state.afterSale,
-                    beforSale: this.state.beforSale,
-                    imgProduct: this.state.imgProduct,
-                    nameProduct: this.state.nameProduct,
-                    percentageDiscount: gia,
-                  };
-                  let localForMe = localStorage.getItem("Shopee");
-                  let listShopee = JSON.parse(localForMe || "[]");
-                  listShopee.push(objShopee);
-                  localStorage.setItem("Shopee", JSON.stringify(listShopee));
+                  productService.add(this.state);
                   alert("Chúc mừng mày đả thêm thành công");
                   window.location.href = "http://localhost:3000/ware-house";
                 }}

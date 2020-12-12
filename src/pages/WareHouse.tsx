@@ -5,10 +5,9 @@ import Header from "../components/home/Header";
 import DialogAddItem from "../components/warehouse/DialogAddItem";
 import WareHouseProduct from "../components/warehouse/WareHouseProduct";
 import UpdateItem from "../components/warehouse/UpdateItem";
-
 import { Product } from "../model/Product";
 import { Cart } from "../model/Cart";
-
+import { productService } from "../service/ProductService";
 class warehouse extends Component<{}, State> {
   constructor(props: any) {
     super(props);
@@ -18,12 +17,12 @@ class warehouse extends Component<{}, State> {
       products: [],
       showDialogUppdateID: "",
     };
-    let LocalPhone = localStorage.getItem("Shopee");
-    let LocalShooppe = JSON.parse(LocalPhone || "[]");
+
+    let localShooppe = productService.list();
     this.state = {
       showDialog: false,
       showDialogUppdate: false,
-      products: LocalShooppe,
+      products: localShooppe,
       showDialogUppdateID: "",
     };
     console.log(this.state.products);

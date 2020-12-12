@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-export type Cart ={
-    idProduct : string ,
-    quantityProduct : number
-}
+export type Cart = {
+  idProduct: string;
+  quantityProduct: number;
+};
