@@ -12,10 +12,8 @@ class UpdateItem extends Component<Props, State> {
       nameProduct: "",
       percentageDiscount: 0,
     };
-    let LocalPhone = localStorage.getItem("products");
-    let LocalShooppe = JSON.parse(LocalPhone || "[]");
+    let LocalShooppe = productService.list();
     LocalShooppe.map((item: any) => {
-      console.log(item);
       this.props.propsProductID == item.idProduct
         ? (this.state = { ...item })
         : console.log(item.nameProduct);

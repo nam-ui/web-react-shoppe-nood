@@ -39,46 +39,16 @@ export class ProductService {
     localStorage.setItem("products", JSON.stringify(newArray));
   }
 
-  // get(id: string) {
-  //   let newArray = new Array();
-  //   let jsonProducts = localStorage.getItem("Cart") || "[]";
-  //   let products = JSON.parse(jsonProducts);
-  //   let quantityProduct = 1;
-  //   products.map((item: any) => {
-  //     id = item.idProduct
-  //       ? (quantityProduct = item.quantityProduct)
-  //       : console.log();
-  //   });
-  //   let ArrayNew = {
-  //     idProduct: id,
-  //     quantityProduct: quantityProduct,
-  //   };
-  //   const listProduct = this.list();
-  //   listProduct.map((item: any) => {
-  //     if (item.idProduct == id) {
-  //       item.quantityProduct = item.quantityProduct++;
-  //     }
-  //   });
-  //   let KiemTre = false;
-  //   let isExist = false;
-  //   listProduct.forEach((item: any) => {
-  //     if (item.idProduct == id) {
-  //       ArrayNew.quantityProduct = item.quantityProduct++;
-  //       localStorage.setItem("Cart", JSON.stringify(listProduct));
-  //       alert("Chúc mừng mày đả Tăng thành công");
-  //       isExist = true;
-  //     }
-  //     if (!isExist) {
-  //       let objShopee = ArrayNew;
-  //       listProduct.push(objShopee);
-  //       localStorage.setItem("Cart", JSON.stringify(listProduct));
-  //       alert("Chúc mừng mày đả thêm thành công");
-  //     }
-  //     if (item.idProduct != id) {
-  //       KiemTre = true;
-  //     }
-  //   });
-  // }
+  get(id: string): Product {
+    const listProduct = this.list();
+    let newArray: Product = {
+      idProduct: id,
+    };
+    listProduct.map((item: any) => {
+      item.idProduct == id ? (newArray = item) : console.log(id);
+    });
+    return newArray;
+  }
 }
 
 export const productService = new ProductService();

@@ -11,13 +11,6 @@ import { productService } from "../service/ProductService";
 class warehouse extends Component<{}, State> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      showDialog: false,
-      showDialogUppdate: false,
-      products: [],
-      showDialogUppdateID: "",
-    };
-
     let localShooppe = productService.list();
     this.state = {
       showDialog: false,
@@ -25,7 +18,6 @@ class warehouse extends Component<{}, State> {
       products: localShooppe,
       showDialogUppdateID: "",
     };
-    console.log(this.state.products);
   }
 
   render() {

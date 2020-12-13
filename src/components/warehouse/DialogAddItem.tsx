@@ -27,7 +27,6 @@ class DialogAddItem extends Component<Props, State> {
               <label htmlFor='name'>Tên sản phẩm</label>
               <input
                 onChange={(event) => {
-                  console.log(event.target.value);
                   this.setState({
                     nameProduct: event.target.value,
                   });
@@ -42,7 +41,6 @@ class DialogAddItem extends Component<Props, State> {
               <label htmlFor='afterSale'>Giá bán</label>
               <input
                 onChange={(event) => {
-                  console.log(event.target.value);
                   this.setState({
                     beforSale: event.target.valueAsNumber,
                   });
@@ -57,7 +55,6 @@ class DialogAddItem extends Component<Props, State> {
               <label htmlFor='beforSale'>Giá gốc</label>
               <input
                 onChange={(event) => {
-                  console.log(event.target.value);
                   this.setState({
                     afterSale: event.target.valueAsNumber,
                   });
@@ -72,7 +69,6 @@ class DialogAddItem extends Component<Props, State> {
               <label htmlFor='imgProduct'>Hình ảnh sản phẩm</label>
               <input
                 onChange={(event) => {
-                  console.log(event.target.value);
                   this.setState({
                     imgProduct: event.target.value,
                   });

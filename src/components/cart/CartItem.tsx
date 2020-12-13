@@ -1,26 +1,17 @@
 import React, { Component } from "react";
 import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
-
+import { productService } from "../../service/ProductService";
+import { Product } from "../../model/Product";
+import { Cart } from "../../model/Cart";
+import { cartService } from "../../service/CartService";
 class CartItem extends Component<Props, State> {
   constructor(props: any) {
     super(props);
-    let LocalPhone = localStorage.getItem("Shopee");
-    let LocalShooppe = JSON.parse(LocalPhone || "[]");
-    LocalShooppe.map((item: any, index: number) => {
-      if (this.props.idProduct == item.idProduct) {
-        this.state = {
-          idProduct: item.idProduct,
-          quantityProduct: this.props.quantityProduct,
-          nameProduct: item.nameProduct,
-          imgProduct: item.imgProduct,
-          beforSale: item.beforSale,
-          afterSale: item.afterSale,
-          percentageDiscount: item.percentageDiscount,
-        };
-      }
-    });
+    this.state = {
+      product: productService.get(this.props.idProduct),
+      quantity: this.props.quantityProduct,
+    };
   }
-
   render() {
     return (
       <div className='content'>
@@ -46,44 +37,51 @@ class CartItem extends Component<Props, State> {
           <div className='cart'>
             <div className='detailInfor'>
               <div className='img-item'>
-                <img src={this.state.imgProduct} alt='' className='img' />
+                <img
+                  src={this.state.product.imgProduct}
+                  alt=''
+                  className='img'
+                />
               </div>
             </div>
             <div className='detailInfor'>
-              <span>{this.state.nameProduct}</span>
+              <span>{this.state.product.nameProduct}</span>
             </div>
             <div className='detailInfor'>
-              <span className='afterSale'>{this.state.afterSale} đ</span>
-              <span className='beforSale'> {this.state.beforSale} đ</span>
+              <span className='afterSale'>
+                {this.state.product.afterSale} đ
+              </span>
+              <span className='beforSale'>
+                {" "}
+                {this.state.product.beforSale} đ
+              </span>
             </div>
             <div className='detailInfor'>
               <input
                 type='number'
                 min={1}
                 id='quantityProduct'
-                defaultValue={this.state.quantityProduct}
+                defaultValue={this.state.quantity}
                 onChange={(event) => {
                   this.setState({
-                    quantityProduct: event.target.valueAsNumber,
+                    quantity: event.target.valueAsNumber,
                   });
                   let MangMS = new Array();
-                  let localForMe = localStorage.getItem("Cart");
-                  let listShopee = JSON.parse(localForMe || "[]");
-                  listShopee.map((item: any) => {
-                    if (item.idProduct == this.state.idProduct) {
-                      item.quantityProduct = this.state.quantityProduct;
+                  let listCart = cartService.list();
+                  listCart.map((item: any) => {
+                    if (item.idProduct == this.state.product.idProduct) {
+                      item.quantityProduct = this.state.quantity;
                       MangMS.push(item);
                       localStorage.setItem("Cart", JSON.stringify(MangMS));
                     }
-                    if (item.idProduct != this.state.idProduct) {
+                    if (item.idProduct != this.state.product.idProduct) {
                       MangMS.push(item);
                       localStorage.setItem("Cart", JSON.stringify(MangMS));
                     }
-
                     {
                       this.props.onQuantityProductAfterSale(
-                        (this.state.quantityProduct || 0) *
-                          (this.state.afterSale || 0)
+                        (this.state.quantity || 0) *
+                          (this.state.product.afterSale || 0)
                       );
                     }
                   });
@@ -92,8 +90,8 @@ class CartItem extends Component<Props, State> {
             </div>
             <div className='detailInfor'>
               <span>
-                {(this.state.quantityProduct || 0) *
-                  (this.state.afterSale || 0)}
+                {(this.state.quantity || 0) *
+                  (this.state.product.afterSale || 0)}
               </span>
             </div>
             <div className='detailInfor'>
@@ -101,26 +99,13 @@ class CartItem extends Component<Props, State> {
             </div>
           </div>
           <div className='cart'>
-            <div className='detailInfor'>{/* <h1>Tổng</h1> */}</div>
-            <div className='detailInfor' id='totalAmounts'>
-              {/* <h1>{(this.state.quantityProduct || 0) * (this.state.afterSale || 0)}</h1> */}
-            </div>
+            <div className='detailInfor'></div>
+            <div className='detailInfor' id='totalAmounts'></div>
             <div className='detailInfor' />
             <div
               className='item-delete'
               onClick={() => {
-                let NewArray = new Array();
-                let LocalPhone = localStorage.getItem("Cart");
-                let LocalShooppe = JSON.parse(LocalPhone || "[]");
-                LocalShooppe.map((item: any) => {
-                  if (this.props.idProduct != item.idProduct) {
-                    NewArray.push(item);
-                    console.log(NewArray);
-                  }
-                  localStorage.setItem("Cart", JSON.stringify(NewArray));
-                  alert("Chúc mừng mày DELTE thêm thành công");
-                  window.location.href = "http://localhost:3000/YouCart";
-                });
+                cartService.remove(this.props.idProduct);
               }}
             >
               <DeleteSweepIcon></DeleteSweepIcon>
@@ -131,20 +116,14 @@ class CartItem extends Component<Props, State> {
     );
   }
 }
-
 type Props = {
   idProduct: string;
   quantityProduct: number;
   onQuantityProductAfterSale(event: number): void;
 };
 type State = {
-  idProduct?: string;
-  quantityProduct?: number;
-  nameProduct?: string;
-  imgProduct?: string;
-  beforSale?: number;
-  afterSale?: number;
-  percentageDiscount?: number;
+  product: Product;
+  quantity: number;
 };
 
 export default CartItem;

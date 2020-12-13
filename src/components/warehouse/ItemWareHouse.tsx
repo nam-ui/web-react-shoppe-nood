@@ -15,14 +15,8 @@ class ItemWareHouse extends Component<Props, State> {
           <span> {this.props.propsProduct.percentageDiscount} % </span>
         </div>
         <div className='price'>
-          <span className='afterSale'>
-            {" "}
-            {this.props.propsProduct.afterSale}{" "}
-          </span>
-          <span className='beforSale'>
-            {" "}
-            {this.props.propsProduct.beforSale}
-          </span>
+          <span className='afterSale'>{this.props.propsProduct.afterSale}</span>
+          <span className='beforSale'>{this.props.propsProduct.beforSale}</span>
         </div>
         <div
           className='btn btn-primary-solid btn-Rounded btn-default'

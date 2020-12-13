@@ -3,49 +3,39 @@ import CartItem from "../cart/CartItem";
 import Item from "../home/ProductItem";
 import { Product } from "../../model/Product";
 import { Cart } from "../../model/Cart";
+import { cartService } from "../../service/CartService";
+import { productService } from "../../service/ProductService";
 class ListCart extends Component<Props, State> {
   constructor(props: any) {
     super(props);
-    let LocalPhoneCart = localStorage.getItem("Cart");
-    let LocalShooppeCart = JSON.parse(LocalPhoneCart || "[]");
-
+    let listCart = cartService.list();
     this.state = {
       sumQuantityProduct: 0,
-      carts: LocalShooppeCart,
+      carts: listCart,
       totalPrice: 0,
     };
-    // let MangMS = new Array();
-    // LocalShooppeCart.map((item: any) => {
-    //   MangMS.push(item);
-    // });
   }
-
   componentDidMount() {
     // this.setState({
     //   totalPrice: this.sumPrice(),
     // });
   }
-
   componentDidUpdate() {
     // this.setState({
     //   totalPrice: this.sumPrice(),
     // });
   }
-
   findProductByID = (id: string) => {
-    let listProduct = JSON.parse(localStorage.getItem("Shopee") || "");
-
+    let listProduct = JSON.parse(localStorage.getItem("products") || "");
     let product = listProduct.find((item: any) => {
       return item.id === id;
     });
-
     return product;
   };
 
   sumPrice = () => {
     let total = 0;
-    let listItems = JSON.parse(localStorage.getItem("Cart") || "");
-
+    let listItems = cartService.list();
     total = listItems
       .map((item: any) => {
         let infoProduct = this.findProductByID(item.id);
@@ -54,22 +44,18 @@ class ListCart extends Component<Props, State> {
       .reduce((x: number, y: number) => {
         return x + y;
       });
-
     return total;
   };
 
   render() {
     return (
       <div className='container-card'>
-        {console.log(this.state)}
-        {
-          // this.onChangeOBJRoomString(100)
-        }
         <h1 className='title'>Giỏ hàng của bạn</h1>
         {this.props.listCart.map((Item) => {
           return (
             <CartItem
               {...Item}
+              idProduct={Item.idProduct}
               onQuantityProductAfterSale={(event) => {
                 var getPrice = this.sumPrice();
                 this.setState({ ...this.state, totalPrice: getPrice });

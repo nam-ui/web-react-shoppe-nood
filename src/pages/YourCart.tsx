@@ -1,26 +1,21 @@
 import React, { Component } from "react";
 import Header from "../components/home/Header";
 import ListCart from "../components/cart/ListCart";
-import { Product } from "../model/Product";
 import { Cart } from "../model/Cart";
+import { cartService } from "../service/CartService";
+import { Product } from "../model/Product";
 import { productService } from "../service/ProductService";
 class yourcart extends Component<{}, State> {
   constructor(props: any) {
     super(props);
+    let listCart = cartService.list();
     this.state = {
-      listCart: [],
+      listCart: listCart,
       true: true,
     };
-    let LocalPhone = localStorage.getItem("Cart");
-    let LocalShooppe = JSON.parse(LocalPhone || "[]");
-
-    this.state = {
-      listCart: LocalShooppe,
-      true: true,
-    };
-    if (LocalShooppe == []) {
+    if (listCart == []) {
       this.state = {
-        listCart: LocalShooppe,
+        listCart: listCart,
         true: false,
       };
     }
