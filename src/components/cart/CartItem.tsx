@@ -66,25 +66,12 @@ class CartItem extends Component<Props, State> {
                   this.setState({
                     quantity: event.target.valueAsNumber,
                   });
-                  let MangMS = new Array();
-                  let listCart = cartService.list();
-                  listCart.map((item: any) => {
-                    if (item.idProduct == this.state.product.idProduct) {
-                      item.quantityProduct = this.state.quantity;
-                      MangMS.push(item);
-                      localStorage.setItem("Cart", JSON.stringify(MangMS));
-                    }
-                    if (item.idProduct != this.state.product.idProduct) {
-                      MangMS.push(item);
-                      localStorage.setItem("Cart", JSON.stringify(MangMS));
-                    }
-                    {
-                      this.props.onQuantityProductAfterSale(
-                        (this.state.quantity || 0) *
-                          (this.state.product.afterSale || 0)
-                      );
-                    }
-                  });
+                  cartService.update(
+                    this.state.product.idProduct,
+                    this.state.product,
+                    this.props,
+                    this.state.quantity
+                  );
                 }}
               />
             </div>
