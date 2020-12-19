@@ -1,5 +1,6 @@
 import { Product } from "../model/Product";
 
+
 export class ProductService {
   list(): Product[] {
     let jsonProducts = localStorage.getItem("products") || "[]";
@@ -8,12 +9,12 @@ export class ProductService {
   }
   add(product: Product) {
     let objProduct = {
-      idProduct: new Date().getTime() + "",
+      id: new Date().getTime() + "",
       afterSale: product.afterSale,
-      beforSale: product.beforSale,
-      imgProduct: product.imgProduct,
-      nameProduct: product.nameProduct,
-      percentageDiscount: (product.beforSale || 0) * (product.afterSale || 0),
+      beforeSale: product.beforeSale,
+      img: product.img,
+      name: product.name,
+      percentageDiscount: (product.beforeSale || 0) * (product.afterSale || 0),
     };
     const updatedProducts = this.list();
     updatedProducts.push(objProduct);
@@ -24,7 +25,7 @@ export class ProductService {
     const listProduct = this.list();
     let newArray = new Array();
     listProduct.map((item: any) => {
-      item.idProduct == product.idProduct
+      item.id == product.id
         ? newArray.push(product)
         : newArray.push(item);
     });
@@ -34,7 +35,7 @@ export class ProductService {
     let newArray = new Array();
     const listProduct = this.list();
     listProduct.map((item: any) => {
-      item.idProduct == id ? console.log(id) : newArray.push(item);
+      item.id == id ? console.log(id) : newArray.push(item);
     });
     localStorage.setItem("products", JSON.stringify(newArray));
   }
@@ -42,10 +43,10 @@ export class ProductService {
   get(id: string): Product {
     const listProduct = this.list();
     let newArray: Product = {
-      idProduct: id,
+      id: id,
     };
     listProduct.map((item: any) => {
-      item.idProduct == id ? (newArray = item) : console.log(id);
+      item.id == id ? (newArray = item) : console.log(id);
     });
     return newArray;
   }

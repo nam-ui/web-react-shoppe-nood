@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class pooter extends Component {
+class Footer extends Component {
     render() {
         return (
             <footer>
@@ -10,4 +10,4 @@ class pooter extends Component {
     }
 }
 
-export default pooter;
+export default Footer;

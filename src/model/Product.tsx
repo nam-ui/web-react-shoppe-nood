@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export type Product ={
-    nameProduct ?: string ,
-    idProduct : string ,
-    imgProduct ?: string ,
-    beforSale ?: number ,
-    afterSale ?: number ,
-    percentageDiscount  ?: number
+export type Product = {
+    name?: string,
+    id: string,
+    img?: string,
+    beforeSale?: number,
+    afterSale?: number,
+    percentageDiscount?: number
 }

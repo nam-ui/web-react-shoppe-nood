@@ -9,11 +9,19 @@ class ListCart extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     let listCart = cartService.list();
-    this.state = {
-      sumQuantityProduct: 0,
-      carts: listCart,
-      totalPrice: 0,
-    };
+
+    listCart.map((item) => {
+      var getPrice = cartService.updateSumPrice(item.id);
+      this.state = {
+        sumQuantityProduct: 0,
+        carts: listCart,
+        totalPrice: getPrice,
+      };
+    })
+
+
+
+
   }
   componentDidMount() {
     // this.setState({
@@ -25,46 +33,26 @@ class ListCart extends Component<Props, State> {
     //   totalPrice: this.sumPrice(),
     // });
   }
-  findProductByID = (id: string) => {
-    let listProduct = JSON.parse(localStorage.getItem("products") || "");
-    let product = listProduct.find((item: any) => {
-      return item.id === id;
-    });
-    return product;
-  };
 
-  sumPrice = () => {
-    let total = 0;
-    let listItems = cartService.list();
-    total = listItems
-      .map((item: any) => {
-        let infoProduct = this.findProductByID(item.id);
-        return Number(infoProduct.afterSale * item.quantityProduct);
-      })
-      .reduce((x: number, y: number) => {
-        return x + y;
-      });
-    return total;
-  };
 
   render() {
     return (
       <div className='container-card'>
         <h1 className='title'>Giỏ hàng của bạn</h1>
-        {this.props.listCart.map((Item) => {
+        {this.props.listCart.map((item) => {
           return (
             <CartItem
-              {...Item}
-              idProduct={Item.idProduct}
+              {...item}
+              id={item.id}
               onQuantityProductAfterSale={(event) => {
-                var getPrice = this.sumPrice();
+                var getPrice = cartService.updateSumPrice(item.id);
                 this.setState({ ...this.state, totalPrice: getPrice });
               }}
             />
           );
         })}
 
-        <p>{this.sumPrice()}</p>
+        <p>{this.state.totalPrice}</p>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import { throws } from "assert";
 import { type } from "os";
 import React, { Component } from "react";
-import Header from "../components/home/Header";
+import Header from "../components/Header";
 import DialogAddItem from "../components/warehouse/DialogAddItem";
 import WareHouseProduct from "../components/warehouse/WareHouseProduct";
 import UpdateItem from "../components/warehouse/UpdateItem";
@@ -37,7 +37,7 @@ class warehouse extends Component<{}, State> {
                   }}
                   className='btn btn-primary'
                 >
-                  Thêm sản phẩm {}{" "}
+                  Thêm sản phẩm { }{" "}
                 </button>
               </div>
             </div>

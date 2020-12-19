@@ -3,60 +3,28 @@ import { Product } from "../../model/Product";
 import { Cart } from "../../model/Cart";
 import { productService } from "../../service/ProductService";
 import { cartService } from "../../service/CartService";
-class Item extends Component<Props, State> {
+class ProductItem extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = {
-      cartItem: {
-        idProduct: this.props.idProduct,
-        quantityProduct: 1,
-      },
-      objItem: {
-        idProduct: this.props.idProduct,
-        afterSale: this.props.afterSale,
-        beforSale: this.props.beforSale,
-        imgProduct: this.props.imgProduct,
-        nameProduct: this.props.nameProduct,
-        percentageDiscount: this.props.percentageDiscount,
-      },
-    };
-    let LocalShooppeCart = cartService.list();
-    LocalShooppeCart.map((item: any) => {
-      if (item == this.state.cartItem.idProduct) {
-        this.state = {
-          cartItem: {
-            idProduct: this.props.idProduct,
-            quantityProduct: item.quantityProduct,
-          },
-          objItem: {
-            idProduct: this.props.idProduct,
-            afterSale: this.props.afterSale,
-            beforSale: this.props.beforSale,
-            imgProduct: this.props.imgProduct,
-            nameProduct: this.props.nameProduct,
-            percentageDiscount: this.props.percentageDiscount,
-          },
-        };
-      }
-    });
   }
 
   render() {
     return (
       <div className='productCard'>
-        <img src={this.props.imgProduct} alt='' />
-        <div className='nameProduct'>
-          <p> {this.props.nameProduct} </p>
-          <p>{this.props.idProduct} </p>
+        <img src={this.props.img} alt='' />
+        <div className='name'>
+          <p> {this.props.name} </p>
+          <p>{this.props.id} </p>
         </div>
         <div className='price'>
           <span className='afterSale'> {this.props.afterSale} </span>
-          <span className='beforSale'> {this.props.beforSale}</span>
+          <span className='beforeSale'> {this.props.beforeSale}</span>
         </div>
         <div
           className='btn btn-primary-solid btn-Rounded btn-default'
           onClick={(event) => {
-            cartService.updateQuantityCart(this.state.cartItem, this.props);
+
+            cartService.addToCart(this.props.id);
           }}
         >
           Đưa vào giỏ hàng
@@ -66,8 +34,7 @@ class Item extends Component<Props, State> {
   }
 }
 type Props = Product;
+
 type State = {
-  objItem: Product;
-  cartItem: Cart;
 };
-export default Item;
+export default ProductItem;

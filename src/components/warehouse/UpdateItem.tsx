@@ -5,18 +5,18 @@ class UpdateItem extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      idProduct: "",
+      id: "",
       afterSale: 1000,
-      beforSale: 0,
-      imgProduct: "",
-      nameProduct: "",
+      beforeSale: 0,
+      img: "",
+      name: "",
       percentageDiscount: 0,
     };
     let LocalShooppe = productService.list();
     LocalShooppe.map((item: any) => {
-      this.props.propsProductID == item.idProduct
+      this.props.propsProductID == item.id
         ? (this.state = { ...item })
-        : console.log(item.nameProduct);
+        : console.log(item.name);
     });
   }
   render() {
@@ -29,11 +29,11 @@ class UpdateItem extends Component<Props, State> {
             <label htmlFor='name'>Tên sản phẩm</label>
             <input
               type='text'
-              id='nameProduct'
+              id='name'
               name='name'
-              defaultValue={this.state.nameProduct}
+              defaultValue={this.state.name}
               onChange={(event) => [
-                this.setState({ nameProduct: event.target.value }),
+                this.setState({ name: event.target.value }),
               ]}
             />
           </div>
@@ -50,26 +50,26 @@ class UpdateItem extends Component<Props, State> {
             />
           </div>
           <div className='item'>
-            <label htmlFor='beforSale'>Giá gốc</label>
+            <label htmlFor='beforeSale'>Giá gốc</label>
             <input
               type='number'
-              id='beforSale'
-              name='beforSale'
-              defaultValue={this.state.beforSale}
+              id='beforeSale'
+              name='beforeSale'
+              defaultValue={this.state.beforeSale}
               onChange={(event) => [
-                this.setState({ beforSale: event.target.valueAsNumber }),
+                this.setState({ beforeSale: event.target.valueAsNumber }),
               ]}
             />
           </div>
           <div className='item'>
-            <label htmlFor='imgProduct'>Hình ảnh sản phẩm</label>
+            <label htmlFor='img'>Hình ảnh sản phẩm</label>
             <input
               type='url'
-              id='imgProduct'
-              name='imgProduct'
-              defaultValue={this.state.imgProduct}
+              id='img'
+              name='img'
+              defaultValue={this.state.img}
               onChange={(event) => [
-                this.setState({ imgProduct: event.target.value }),
+                this.setState({ img: event.target.value }),
               ]}
             />
           </div>

@@ -6,11 +6,11 @@ class DialogAddItem extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      idProduct: "",
+      id: "",
       afterSale: 1000,
-      beforSale: 0,
-      imgProduct: "",
-      nameProduct: "",
+      beforeSale: 0,
+      img: "",
+      name: "",
       percentageDiscount: 0,
     };
   }
@@ -28,11 +28,11 @@ class DialogAddItem extends Component<Props, State> {
               <input
                 onChange={(event) => {
                   this.setState({
-                    nameProduct: event.target.value,
+                    name: event.target.value,
                   });
                 }}
                 type='text'
-                id='nameProduct'
+                id='name'
                 name='name'
                 placeholder='Nhập tên sản phẩm'
               />
@@ -42,7 +42,7 @@ class DialogAddItem extends Component<Props, State> {
               <input
                 onChange={(event) => {
                   this.setState({
-                    beforSale: event.target.valueAsNumber,
+                    beforeSale: event.target.valueAsNumber,
                   });
                 }}
                 type='number'
@@ -52,7 +52,7 @@ class DialogAddItem extends Component<Props, State> {
               />
             </div>
             <div className='item'>
-              <label htmlFor='beforSale'>Giá gốc</label>
+              <label htmlFor='beforeSale'>Giá gốc</label>
               <input
                 onChange={(event) => {
                   this.setState({
@@ -60,22 +60,22 @@ class DialogAddItem extends Component<Props, State> {
                   });
                 }}
                 type='number'
-                id='beforSale'
-                name='beforSale'
+                id='beforeSale'
+                name='beforeSale'
                 placeholder='Nhập giá gốc'
               />
             </div>
             <div className='item'>
-              <label htmlFor='imgProduct'>Hình ảnh sản phẩm</label>
+              <label htmlFor='img'>Hình ảnh sản phẩm</label>
               <input
                 onChange={(event) => {
                   this.setState({
-                    imgProduct: event.target.value,
+                    img: event.target.value,
                   });
                 }}
                 type='url'
-                id='imgProduct'
-                name='imgProduct'
+                id='img'
+                name='img'
                 placeholder='Nhập link hình ảnh sản phẩm (Khuyến khích ảnh dạng hình vuông)'
               />
             </div>

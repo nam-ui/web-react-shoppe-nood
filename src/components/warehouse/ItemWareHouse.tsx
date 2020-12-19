@@ -9,27 +9,27 @@ class ItemWareHouse extends Component<Props, State> {
   render() {
     return (
       <div className='productCard'>
-        <img src={this.props.propsProduct.imgProduct} alt='' />
-        <div className='nameProduct'>
-          <p> {this.props.propsProduct.nameProduct} </p>
+        <img src={this.props.propsProduct.img} alt='' />
+        <div className='name'>
+          <p> {this.props.propsProduct.name} </p>
           <span> {this.props.propsProduct.percentageDiscount} % </span>
         </div>
         <div className='price'>
           <span className='afterSale'>{this.props.propsProduct.afterSale}</span>
-          <span className='beforSale'>{this.props.propsProduct.beforSale}</span>
+          <span className='beforeSale'>{this.props.propsProduct.beforeSale}</span>
         </div>
         <div
           className='btn btn-primary-solid btn-Rounded btn-default'
           onClick={() => {
             this.props.onChangeDialogUpdate(true);
-            this.props.onEditProduct(this.props.propsProduct.idProduct);
+            this.props.onEditProduct(this.props.propsProduct.id);
           }}
         >
           Chỉnh sửa
         </div>
         <button
           onClick={(event: any) => {
-            productService.remove(this.props.propsProduct.idProduct);
+            productService.remove(this.props.propsProduct.id);
             window.location.href = "http://localhost:3000/ware-house";
           }}
         >

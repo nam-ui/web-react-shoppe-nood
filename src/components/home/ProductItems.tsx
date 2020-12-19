@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Item from "./ProductItem";
+import ProductItem from "./ProductItem";
 import { Product } from "../../model/Product";
 
-class productItem extends Component<Props, State> {
+class ProductItems extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -15,7 +15,7 @@ class productItem extends Component<Props, State> {
     return (
       <div className='products'>
         {this.state.products.map((item) => {
-          return <Item {...item} />;
+          return <ProductItem {...item} />;
         })}
       </div>
     );
@@ -28,4 +28,4 @@ type Props = {
   products: Product[];
 };
 
-export default productItem;
+export default ProductItems;

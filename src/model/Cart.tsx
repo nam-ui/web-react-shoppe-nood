@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
 export type Cart = {
-  idProduct: string;
+  id: string;
   quantityProduct: number;
 };

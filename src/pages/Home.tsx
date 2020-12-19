@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import Header from "../components/home/Header";
-import Pooter from "../components/home/Pooter";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Slider from "../components/home/Slider";
-import ProductItem from "../components/home/ProductItems";
+import ProductItems from "../components/home/ProductItems";
 import { type } from "os";
 import { Product } from "../model/Product";
 import { Cart } from "../model/Cart";
 import { productService } from "../service/ProductService";
-class home extends Component<{}, State> {
+class Home extends Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -24,8 +24,8 @@ class home extends Component<{}, State> {
       <div id='home-pages'>
         <Header />
         <Slider />
-        <ProductItem products={this.state.products} />
-        <Pooter />
+        <ProductItems products={this.state.products} />
+        <Footer />
       </div>
     );
   }
@@ -34,4 +34,4 @@ type State = {
   products: Product[];
 };
 
-export default home;
+export default Home;

@@ -8,7 +8,7 @@ class CartItem extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      product: productService.get(this.props.idProduct),
+      product: productService.get(this.props.id),
       quantity: this.props.quantityProduct,
     };
   }
@@ -38,22 +38,22 @@ class CartItem extends Component<Props, State> {
             <div className='detailInfor'>
               <div className='img-item'>
                 <img
-                  src={this.state.product.imgProduct}
+                  src={this.state.product.img}
                   alt=''
                   className='img'
                 />
               </div>
             </div>
             <div className='detailInfor'>
-              <span>{this.state.product.nameProduct}</span>
+              <span>{this.state.product.name}</span>
             </div>
             <div className='detailInfor'>
               <span className='afterSale'>
                 {this.state.product.afterSale} đ
               </span>
-              <span className='beforSale'>
+              <span className='beforeSale'>
                 {" "}
-                {this.state.product.beforSale} đ
+                {this.state.product.beforeSale} đ
               </span>
             </div>
             <div className='detailInfor'>
@@ -67,7 +67,7 @@ class CartItem extends Component<Props, State> {
                     quantity: event.target.valueAsNumber,
                   });
                   cartService.update(
-                    this.state.product.idProduct,
+                    this.state.product.id,
                     this.state.product,
                     this.props,
                     this.state.quantity
@@ -92,7 +92,7 @@ class CartItem extends Component<Props, State> {
             <div
               className='item-delete'
               onClick={() => {
-                cartService.remove(this.props.idProduct);
+                cartService.remove(this.props.id);
               }}
             >
               <DeleteSweepIcon></DeleteSweepIcon>
@@ -104,7 +104,7 @@ class CartItem extends Component<Props, State> {
   }
 }
 type Props = {
-  idProduct: string;
+  id: string;
   quantityProduct: number;
   onQuantityProductAfterSale(event: number): void;
 };
