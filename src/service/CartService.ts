@@ -8,9 +8,7 @@ export class CartService {
     return listCart;
   }
 
-  updateQuantityCart(id: string){
 
-  }
   remove(id: string) {
     let NewArray  = new Array();
     const listCart = this.list()
@@ -56,30 +54,55 @@ export class CartService {
       });
 
   }
-}
+
+
+  updateQuantityCart(cart : Cart , props : Product ){
+    const listCart = cartService.list();
+    let ArrayNew = {
+      idProduct: cart.idProduct,
+      quantityProduct: cart.quantityProduct,
+    };
+    let listShopee = cartService.list();
+    listShopee.map((item: any) => {
+      if (item.idProduct == props.idProduct) {
+        item.quantityProduct = item.quantityProduct++;
+      }
+    });
+    let KiemTre = false;
+    let isExist = false;
+    listShopee.forEach((item: any) => {
+      if (item.idProduct == props.idProduct) {
+        ArrayNew.quantityProduct = item.quantityProduct++;
+        localStorage.setItem("Cart", JSON.stringify(listShopee));
+        alert("Chúc mừng mày đả Tăng thành công");
+        isExist = true;
+      }
+      if (item.idProduct != props.idProduct) {
+        KiemTre = true;
+      }
+    });
+    if (!isExist) {
+      let objShopee = ArrayNew;
+      listShopee.push(objShopee);
+      localStorage.setItem("Cart", JSON.stringify(listShopee));
+      alert("Chúc mừng mày đả thêm thành công");
+    }
+    
+    
+  }
+    
 
 
 
 
-// let MangMS = new Array();
-// let listCart = cartService.list();
-// listCart.map((item: any) => {
-//   if (item.idProduct == this.state.product.idProduct) {
-//     item.quantityProduct = this.state.quantity;
-//     MangMS.push(item);
-//     localStorage.setItem("Cart", JSON.stringify(MangMS));
-//   }
-//   if (item.idProduct != this.state.product.idProduct) {
-//     MangMS.push(item);
-//     localStorage.setItem("Cart", JSON.stringify(MangMS));
-//   }
-//   {
-//     this.props.onQuantityProductAfterSale(
-//       (this.state.quantity || 0) *
-//         (this.state.product.afterSale || 0)
-//     );
-//   }
-// });
+
+
+  }
+
+
+
+
+
 
 export const cartService = new CartService();
 

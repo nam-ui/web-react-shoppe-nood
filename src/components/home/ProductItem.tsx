@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Product } from "../../model/Product";
 import { Cart } from "../../model/Cart";
-
+import { productService } from "../../service/ProductService";
+import { cartService } from "../../service/CartService";
 class Item extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -19,9 +20,7 @@ class Item extends Component<Props, State> {
         percentageDiscount: this.props.percentageDiscount,
       },
     };
-    let LocalPhoneCart = localStorage.getItem("Cart");
-    let LocalShooppeCart = JSON.parse(LocalPhoneCart || "[]");
-    console.log(LocalShooppeCart);
+    let LocalShooppeCart = cartService.list();
     LocalShooppeCart.map((item: any) => {
       if (item == this.state.cartItem.idProduct) {
         this.state = {
@@ -57,38 +56,7 @@ class Item extends Component<Props, State> {
         <div
           className='btn btn-primary-solid btn-Rounded btn-default'
           onClick={(event) => {
-            let MangMS = [];
-            let ArrayNew = {
-              idProduct: this.state.cartItem.idProduct,
-              quantityProduct: this.state.cartItem.quantityProduct,
-            };
-            let localForMe = localStorage.getItem("Cart");
-            let listShopee = JSON.parse(localForMe || "[]");
-            listShopee.map((item: any) => {
-              if (item.idProduct == this.props.idProduct) {
-                item.quantityProduct = item.quantityProduct++;
-              }
-            });
-            let KiemTre = false;
-            let isExist = false;
-            listShopee.forEach((item: any) => {
-              if (item.idProduct == this.props.idProduct) {
-                ArrayNew.quantityProduct = item.quantityProduct++;
-                localStorage.setItem("Cart", JSON.stringify(listShopee));
-                alert("Chúc mừng mày đả Tăng thành công");
-                isExist = true;
-              }
-              if (item.idProduct != this.props.idProduct) {
-                KiemTre = true;
-              }
-            });
-            if (!isExist) {
-              let objShopee = ArrayNew;
-              listShopee.push(objShopee);
-              localStorage.setItem("Cart", JSON.stringify(listShopee));
-              alert("Chúc mừng mày đả thêm thành công");
-            }
-            // window.location.href = "http://localhost:3000/"
+            cartService.updateQuantityCart(this.state.cartItem, this.props);
           }}
         >
           Đưa vào giỏ hàng
