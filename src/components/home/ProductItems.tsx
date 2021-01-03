@@ -14,7 +14,7 @@ class ProductItems extends Component<Props, State> {
   render() {
     return (
       <div className='products'>
-        {this.state.products.map((item) => {
+        {this.props.products.map((item) => {
           return <ProductItem {...item} />;
         })}
       </div>

@@ -9,22 +9,21 @@ class ItemWareHouse extends Component<Props, State> {
   render() {
     return (
       <div className='productCard'>
-        <img src={this.props.propsProduct.img} alt='' />
+        <img src={this.props.propsProduct.images} alt='' />
         <div className='name'>
           <p> {this.props.propsProduct.name} </p>
           <span> {this.props.propsProduct.percentageDiscount} % </span>
         </div>
         <div className='price'>
-          <span className='afterSale'>{this.props.propsProduct.afterSale}</span>
-          <span className='beforeSale'>{this.props.propsProduct.beforeSale}</span>
+          <span className='price'>{this.props.propsProduct.salePrice}</span>
+          <span className='salePrice'>{this.props.propsProduct.price}</span>
         </div>
         <div
           className='btn btn-primary-solid btn-Rounded btn-default'
           onClick={() => {
             this.props.onChangeDialogUpdate(true);
             this.props.onEditProduct(this.props.propsProduct.id);
-          }}
-        >
+          }} >
           Chỉnh sửa
         </div>
         <button

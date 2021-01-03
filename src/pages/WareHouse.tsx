@@ -7,18 +7,27 @@ import WareHouseProduct from "../components/warehouse/WareHouseProduct";
 import UpdateItem from "../components/warehouse/UpdateItem";
 import { Product } from "../model/Product";
 import { Cart } from "../model/Cart";
-import { productService } from "../service/ProductService";
+import { productService } from "../service/axios/ProductService";
 class warehouse extends Component<{}, State> {
   constructor(props: any) {
     super(props);
-    let localShooppe = productService.list();
     this.state = {
       showDialog: false,
       showDialogUppdate: false,
-      products: localShooppe,
+      products: [],
       showDialogUppdateID: "",
     };
   }
+
+  componentDidMount() {
+    productService.list().then(product => {
+      this.setState({ products: product, })
+
+    })
+  }
+
+
+
 
   render() {
     return (
@@ -64,9 +73,10 @@ class warehouse extends Component<{}, State> {
             }}
           />
         </div>
-
+        {this.state.showDialogUppdate == true ? console.log(this.state.showDialogUppdateID) : console.log(0)}
         {this.state.showDialogUppdate == true && (
-          <UpdateItem
+
+          < UpdateItem
             onChangeExitDiaLogUpdate={(event) => {
               this.setState({ showDialogUppdate: false });
             }}

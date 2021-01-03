@@ -10,11 +10,11 @@ export class ProductService {
   add(product: Product) {
     let objProduct = {
       id: new Date().getTime() + "",
-      afterSale: product.afterSale,
-      beforeSale: product.beforeSale,
-      img: product.img,
+      salePrice: product.salePrice,
+      price: product.price,
+      images: product.images,
       name: product.name,
-      percentageDiscount: (product.beforeSale || 0) * (product.afterSale || 0),
+      percentageDiscount: (product.price || 0) * (product.salePrice || 0),
     };
     const updatedProducts = this.list();
     updatedProducts.push(objProduct);

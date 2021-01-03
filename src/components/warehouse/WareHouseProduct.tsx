@@ -18,8 +18,9 @@ class WareHouseProduct extends Component<Props, State> {
     return (
       <div className='products'>
         {this.props.products.map((item) => {
+
           return (
-            <ItemWareHouse
+            < ItemWareHouse
               propsProduct={item}
               onEditProduct={(event) => {
                 this.props.onChangeDialogID(event);

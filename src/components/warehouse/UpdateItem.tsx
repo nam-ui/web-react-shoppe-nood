@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 import { Product } from "../../model/Product";
-import { productService } from "../../service/ProductService";
+import { productService } from "../../service/axios/ProductService";
 class UpdateItem extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
       id: "",
-      afterSale: 1000,
-      beforeSale: 0,
-      img: "",
+      salePrice: 1000,
+      price: 0,
+      images: "",
       name: "",
       percentageDiscount: 0,
     };
-    let LocalShooppe = productService.list();
-    LocalShooppe.map((item: any) => {
-      this.props.propsProductID == item.id
-        ? (this.state = { ...item })
-        : console.log(item.name);
-    });
   }
+  componentDidMount() {
+    productService.getById(this.props.propsProductID).then(product => {
+      console.log(product)
+      this.setState(product)
+    })
+  }
+
   render() {
     return (
-      // display: this.props.showDialogUppdate ? 'block' : 'none'
       <div className='mark' style={{}}>
         <div className='content-updateitem'>
           <h1 className='title'>Chỉnh sửa thông tin sản phẩm</h1>
@@ -37,39 +37,40 @@ class UpdateItem extends Component<Props, State> {
               ]}
             />
           </div>
+          {console.log(this.state)}
           <div className='item'>
-            <label htmlFor='afterSale'>Giá bán</label>
+            <label htmlFor='salePrice'>Giá bán</label>
             <input
               type='number'
-              id='afterSale'
-              name='afterSale'
-              defaultValue={this.state.afterSale}
+              id='salePrice'
+              name='salePrice'
+              value={this.state.salePrice}
               onChange={(event) => [
-                this.setState({ afterSale: event.target.valueAsNumber }),
+                this.setState({ salePrice: event.target.valueAsNumber }),
               ]}
             />
           </div>
           <div className='item'>
-            <label htmlFor='beforeSale'>Giá gốc</label>
+            <label htmlFor='price'>Giá gốc</label>
             <input
               type='number'
-              id='beforeSale'
-              name='beforeSale'
-              defaultValue={this.state.beforeSale}
+              id='price'
+              name='price'
+              value={this.state.price}
               onChange={(event) => [
-                this.setState({ beforeSale: event.target.valueAsNumber }),
+                this.setState({ price: event.target.valueAsNumber }),
               ]}
             />
           </div>
           <div className='item'>
-            <label htmlFor='img'>Hình ảnh sản phẩm</label>
+            <label htmlFor='images'>Hình ảnh sản phẩm</label>
             <input
               type='url'
-              id='img'
-              name='img'
-              defaultValue={this.state.img}
+              id='images'
+              name='images'
+              defaultValue={this.state.images}
               onChange={(event) => [
-                this.setState({ img: event.target.value }),
+                this.setState({ images: event.target.value }),
               ]}
             />
           </div>
@@ -77,6 +78,7 @@ class UpdateItem extends Component<Props, State> {
             <button
               className='btn btn-primary'
               onClick={() => {
+                console.log(this.state)
                 productService.update(this.props.propsProductID, this.state);
                 alert("Chúc mừng mày đả sửa thành công");
                 window.location.href = "/ware-house";

@@ -47,9 +47,9 @@ export class CartService {
           localStorage.setItem("Cart", JSON.stringify(MangMS));
         }
         {
-          props.onQuantityProductAfterSale(
+          props.onQuantityProductsalePrice(
             (quantityProduct || 0) *
-              (product.afterSale || 0)
+              (product.salePrice || 0)
           );
         }
       });
@@ -92,7 +92,7 @@ export class CartService {
     total = listItems
       .map((item: any) => {
         let infoProduct = productService.get(item.id);
-        return Number((infoProduct.afterSale  || 1)* item.quantityProduct);
+        return Number((infoProduct.salePrice  || 1)* item.quantityProduct);
       })
       .reduce((x: number, y: number) => {
         return x + y;

@@ -44,7 +44,7 @@ class ListCart extends Component<Props, State> {
             <CartItem
               {...item}
               id={item.id}
-              onQuantityProductAfterSale={(event) => {
+              onQuantityProductsalePrice={(event) => {
                 var getPrice = cartService.updateSumPrice(item.id);
                 this.setState({ ...this.state, totalPrice: getPrice });
               }}

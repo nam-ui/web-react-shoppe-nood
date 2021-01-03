@@ -1,15 +1,15 @@
 import { type } from "os";
 import React, { Component } from "react";
 import { Product } from "../../model/Product";
-import { productService } from "../../service/ProductService";
+import { productService } from "../../service/axios/ProductService";
 class DialogAddItem extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
       id: "",
-      afterSale: 1000,
-      beforeSale: 0,
-      img: "",
+      salePrice: 1000,
+      price: 0,
+      images: "",
       name: "",
       percentageDiscount: 0,
     };
@@ -38,44 +38,44 @@ class DialogAddItem extends Component<Props, State> {
               />
             </div>
             <div className='item'>
-              <label htmlFor='afterSale'>Giá bán</label>
+              <label htmlFor='salePrice'>Giá bán</label>
               <input
                 onChange={(event) => {
                   this.setState({
-                    beforeSale: event.target.valueAsNumber,
+                    price: event.target.valueAsNumber,
                   });
                 }}
                 type='number'
-                id='afterSale'
-                name='afterSale'
+                id='salePrice'
+                name='salePrice'
                 placeholder='Nhập giá bán'
               />
             </div>
             <div className='item'>
-              <label htmlFor='beforeSale'>Giá gốc</label>
+              <label htmlFor='price'>Giá gốc</label>
               <input
                 onChange={(event) => {
                   this.setState({
-                    afterSale: event.target.valueAsNumber,
+                    salePrice: event.target.valueAsNumber,
                   });
                 }}
                 type='number'
-                id='beforeSale'
-                name='beforeSale'
+                id='price'
+                name='price'
                 placeholder='Nhập giá gốc'
               />
             </div>
             <div className='item'>
-              <label htmlFor='img'>Hình ảnh sản phẩm</label>
+              <label htmlFor='images'>Hình ảnh sản phẩm</label>
               <input
                 onChange={(event) => {
                   this.setState({
-                    img: event.target.value,
+                    images: event.target.value,
                   });
                 }}
                 type='url'
-                id='img'
-                name='img'
+                id='images'
+                name='images'
                 placeholder='Nhập link hình ảnh sản phẩm (Khuyến khích ảnh dạng hình vuông)'
               />
             </div>

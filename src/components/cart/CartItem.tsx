@@ -36,11 +36,11 @@ class CartItem extends Component<Props, State> {
         <div className='productInfor' id='carts'>
           <div className='cart'>
             <div className='detailInfor'>
-              <div className='img-item'>
+              <div className='images-item'>
                 <img
-                  src={this.state.product.img}
+                  src={this.state.product.images}
                   alt=''
-                  className='img'
+                  className='images'
                 />
               </div>
             </div>
@@ -48,12 +48,12 @@ class CartItem extends Component<Props, State> {
               <span>{this.state.product.name}</span>
             </div>
             <div className='detailInfor'>
-              <span className='afterSale'>
-                {this.state.product.afterSale} đ
+              <span className='salePrice'>
+                {this.state.product.salePrice} đ
               </span>
-              <span className='beforeSale'>
+              <span className='price'>
                 {" "}
-                {this.state.product.beforeSale} đ
+                {this.state.product.price} đ
               </span>
             </div>
             <div className='detailInfor'>
@@ -78,7 +78,7 @@ class CartItem extends Component<Props, State> {
             <div className='detailInfor'>
               <span>
                 {(this.state.quantity || 0) *
-                  (this.state.product.afterSale || 0)}
+                  (this.state.product.salePrice || 0)}
               </span>
             </div>
             <div className='detailInfor'>
@@ -106,7 +106,7 @@ class CartItem extends Component<Props, State> {
 type Props = {
   id: string;
   quantityProduct: number;
-  onQuantityProductAfterSale(event: number): void;
+  onQuantityProductsalePrice(event: number): void;
 };
 type State = {
   product: Product;

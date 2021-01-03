@@ -11,14 +11,15 @@ class ProductItem extends Component<Props, State> {
   render() {
     return (
       <div className='productCard'>
-        <img src={this.props.img} alt='' />
+        <img src={this.props.images} alt='' />
+        {console.log(this.props)}
         <div className='name'>
           <p> {this.props.name} </p>
-          <p>{this.props.id} </p>
+
         </div>
         <div className='price'>
-          <span className='afterSale'> {this.props.afterSale} </span>
-          <span className='beforeSale'> {this.props.beforeSale}</span>
+          <span className='salePrice'> {this.props.salePrice} </span>
+          <span className='price'> {this.props.price}</span>
         </div>
         <div
           className='btn btn-primary-solid btn-Rounded btn-default'

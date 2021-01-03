@@ -44,7 +44,7 @@ body {
 .nav-bar {
     width: 100%;
     margin: 0 auto;
-    background-color: var(--primary-color);
+    background: linear-gradient(90deg, rgba(199, 58, 51, 1) 0%, rgba(193, 52, 49, 1) 100%);
 }
 
 .content {
@@ -85,14 +85,22 @@ body {
 }
 
 #slider-for-home {
-    max-width: 1090px;
-    min-width: 1090px;
-    max-height: 327px;
-    min-height: 327px;
-    background-image: url('https://cf.shopee.vn/file/7c77a744cd30a500488c2024b6c15dd8');
-    margin: 2% auto;
+    width: 100%;
+    max-height: 525px;
+    min-height: 525px;
+    margin: 0% auto;
+    background: linear-gradient(90deg, rgba(199, 58, 51, 1) 0%, rgba(193, 52, 49, 1) 100%);
+}
+
+#slider-for-home-images {
+    background-image: url(../src//img/Shopee_Campaign\ thang\ 07_2019.png);
+    margin: 0% auto;
+    width: 100%;
+    height: 525px;
     background-repeat: no-repeat;
     background-size: contain;
+    background-position: center;
+    object-fit: cover;
 }
 
 footer {
@@ -110,10 +118,8 @@ footer {
     width: 1400px;
     display: grid;
     grid-template-columns: 24.3% 24.3% 24.3% 24.3%;
-    grid-template-rows: 100%;
     grid-gap: 1%;
     margin: 0 auto;
-    
 }
 
 .productCard {
@@ -121,8 +127,17 @@ footer {
     padding: 20px;
     margin: 20px;
     border-radius: 5px;
-    box-shadow: 1px 1px 1px 1px #ddd;
+    background-color: transparent;
+    max-height: 500px;
+}
+
+.productCard>img {
+    max-width: 100%;
+}
+
+.productCard:hover {
     background-color: white;
+    box-shadow: 0 8px 18px 6px rgba(19, 19, 19, 0.1);
 }
 
 .price {
@@ -150,7 +165,7 @@ footer {
 .mark {
     background-color: rgba(0, 0, 0, 0.4);
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: block;
     position: absolute;
     top: 0;
@@ -198,10 +213,12 @@ footer {
     padding: 25px;
     background-color: #ffffff;
 }
-.poppup-success{
-    position:  absolute;
+
+.poppup-success {
+    position: absolute;
 }
-.container-card{
+
+.container-card {
     width: 80%;
     margin: 0 auto;
     display: grid;
@@ -209,6 +226,31 @@ footer {
     justify-content: left;
     align-items: center;
 }
-.img-item{
+
+.images-item {
     width: 200px;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 21px;
+    color: #3b3b3b;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 40px;
+    color: #3b3b3b;
+}
+
+.salePrice {
+    color: #9d9d9d;
+    font-weight: 700;
+    font-size: 1em;
+    line-height: 40px;
+    margin-top: .125em;
+    position: relative;
+    text-decoration: line-through;
 }
