@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
+// import { productService } from "../../service/axios/ProductService";
 import { productService } from "../../service/ProductService";
 import { Product } from "../../model/Product";
 import { Cart } from "../../model/Cart";
@@ -12,6 +13,9 @@ class CartItem extends Component<Props, State> {
       quantity: this.props.quantityProduct,
     };
   }
+  // componentDidMount() {
+  //   this.setState({ product: productService.getById(this.props.id) })
+  // }
   render() {
     return (
       <div className='content'>

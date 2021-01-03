@@ -1,5 +1,5 @@
 import { Cart } from "../model/Cart";
-import { productService } from "../service/ProductService";
+import { productService } from "../service/axios/ProductService";
 import {Product } from "../model/Product";
 
 export class CartService {
@@ -8,7 +8,6 @@ export class CartService {
     let listCart = JSON.parse(jsonCart);
     return listCart;
   }
-
 
   remove(id: string) {
     let NewArray  = new Array();
@@ -87,17 +86,17 @@ export class CartService {
     }
 
     updateSumPrice(id : string) : any{
-    let total = 0;
-    let listItems = cartService.list();
-    total = listItems
-      .map((item: any) => {
-        let infoProduct = productService.get(item.id);
-        return Number((infoProduct.salePrice  || 1)* item.quantityProduct);
-      })
-      .reduce((x: number, y: number) => {
-        return x + y;
-      });
-    return total;
+    // let total = 0;
+    // let listItems = cartService.list();
+    // total = listItems
+    //   .map((item: any) => {
+    //     let infoProduct = productService.getById(item.id);
+    //     return Number((infoProduct.salePrice  || 1)* item.quantityProduct);
+    //   })
+    //   .reduce((x: number, y: number) => {
+    //     return x + y;
+    //   });
+    // return total;
     }
     getItemCart(id : string){
       const listCart = this.list();

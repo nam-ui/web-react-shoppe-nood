@@ -78,7 +78,6 @@ class UpdateItem extends Component<Props, State> {
             <button
               className='btn btn-primary'
               onClick={() => {
-                console.log(this.state)
                 productService.update(this.props.propsProductID, this.state);
                 alert("Chúc mừng mày đả sửa thành công");
                 window.location.href = "/ware-house";

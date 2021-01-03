@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Product } from "../../model/Product";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { productService } from "../../service/ProductService";
+import { productService } from "../../service/axios/ProductService";
 class ItemWareHouse extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -28,6 +28,7 @@ class ItemWareHouse extends Component<Props, State> {
         </div>
         <button
           onClick={(event: any) => {
+            console.log(this.props.propsProduct.id)
             productService.remove(this.props.propsProduct.id);
             window.location.href = "http://localhost:3000/ware-house";
           }}
